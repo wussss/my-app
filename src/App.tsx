@@ -1,26 +1,34 @@
-import type { Component } from 'solid-js';
+import type { Component } from "solid-js";
+import { Switch, Match } from "solid-js";
+import { createStore } from "solid-js/store";
 
-import logo from './logo.svg';
-import styles from './App.module.css';
+import { Home } from "./pages/Home/home";
+import { My } from "./pages/My/my";
 
 const App: Component = () => {
+  const initialValue = {
+    route: "home",
+  };
+  const [store, setStore] = createStore(initialValue);
+
   return (
-    <div class={styles.App}>
-      <header class={styles.header}>
-        <img src={logo} class={styles.logo} alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          class={styles.link}
-          href="https://github.com/solidjs/solid"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn Solid
-        </a>
-      </header>
-    </div>
+    <>
+      <div
+        onclick={() => {
+          setStore({ route: store.route === "my" ? "home" : "my" });
+        }}
+      >
+        change route
+      </div>
+      <Switch fallback={<div>Not Found</div>}>
+        <Match when={store.route === "home"}>
+          <Home />
+        </Match>
+        <Match when={store.route === "my"}>
+          <My />
+        </Match>
+      </Switch>
+    </>
   );
 };
 

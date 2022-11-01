@@ -1,0 +1,21 @@
+.root {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  padding: 40px;
+}
+.button {
+  width: 100px;
+  height: 40px;
+  border-radius: 6px;
+  text-align: center;
+  line-height: 40px;
+  color: white;
+  margin-top: 10px;
+}
+.button.add {
+  background-color: #508be3;
+}
+.button.clear {
+  background-color: #ee4d2d;
+}
